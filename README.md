@@ -2,10 +2,10 @@
 This is a fork repo from YTLite,but add more tweaks similar to YTLitePlus for who can't build IPA or The app is unusable.
 If you have any problems,feel free to open issues!
 
+**EDIT:** THANKS FOR 100 FORKS!🥳🎉🙏
 
 **NOTE:** 
 - If you are experiencing playback issues,use YouTube version 19.49.5.
-- If you see a popup says "Incompatible Tweaks Detected",just check on "Don't show for this version",click on "I accept all risks" and ignore it.
 - If YouTube's loop video feature doesn't work,use YouLoop in Settings -> Video Overlay -> Show Loop Video Button instead.
 
 **Known Issue:**
@@ -16,10 +16,9 @@ There are still some bugs in settings that 2 Gonerino are showing up.
 - YouMute (Mute the video sounds in video overlay)
 - YouSpeed (Change video speeds in video overlay)
 - YTABConfig (Configures A/B settings)
-- YouTimeStamp (Copy video URL with timestamp from video overlay)
 - YouSlider (Customizes video slider and scrubber)
 - YouChooseQuality (Auto select the video quality from your scenario)
-- YouShare (Copy video URL from video overlay)
+- YouShare (Copy video URL faster from video overlay)
 - Gonerino (Filter videos/channels/keywords that you don't want them to show up on your feed)
 - And Much more...
 
