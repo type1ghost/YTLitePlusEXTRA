@@ -23,6 +23,7 @@ on:
           - "ALL"
           - active
           - deleted
+          - disabled_fork
           - disabled_inactivity
           - disabled_manually
       delete_run_by_conclusion_pattern:
@@ -41,7 +42,17 @@ on:
       dry_run:
         description: 'Logs simulated changes, no deletions are performed'
         required: false
-
+      check_branch_existence:
+        description: 'Skip deletion for runs linked to an existing branch'
+        default: false
+        required: false
+        type: boolean
+      check_pullrequest_exist:
+        description: 'Skip deletion for runs linked to a pull request'
+        default: false
+        required: false
+        type: boolean
+        
 jobs:
   build:
     name: Delete old workflows run
@@ -55,14 +66,16 @@ jobs:
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          retain_days: ${{ github.event.inputs.days }}
-          keep_minimum_runs: ${{ github.event.inputs.minimum_runs }}
-          delete_workflow_pattern: ${{ github.event.inputs.delete_workflow_pattern }}
-          delete_workflow_by_state_pattern: ${{ github.event.inputs.delete_workflow_by_state_pattern }}
+          retain_days: ${{ inputs.days }}
+          keep_minimum_runs: ${{ inputs.minimum_runs }}
+          delete_workflow_pattern: ${{ inputs.delete_workflow_pattern }}
+          delete_workflow_by_state_pattern: ${{ inputs.delete_workflow_by_state_pattern }}
           delete_run_by_conclusion_pattern: >-
             ${{
-              startsWith(github.event.inputs.delete_run_by_conclusion_pattern, 'Unsuccessful:')
+              startsWith(inputs.delete_run_by_conclusion_pattern, 'Unsuccessful:')
               && 'action_required,cancelled,failure,skipped'
-              || github.event.inputs.delete_run_by_conclusion_pattern
+              || inputs.delete_run_by_conclusion_pattern
             }}
-          dry_run: ${{ github.event.inputs.dry_run }}
+          dry_run: ${{ inputs.dry_run }}
+          check_branch_existence: ${{ inputs.check_branch_existence }}
+          check_pullrequest_exist: ${{ inputs.check_pullrequest_exist }}
